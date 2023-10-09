@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./apache.conf:/etc/apache2/sites-available/000-default.conf
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /var/www/html
